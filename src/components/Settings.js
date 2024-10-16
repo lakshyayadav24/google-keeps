@@ -45,7 +45,7 @@ export default function BasicMenu() {
       >
         <div className='settings-btn-container'>
         <MenuItem className='settings-btn' onClick={handleClose}>Settings</MenuItem>
-        <MenuItem className='settings-btn' onClick={handleToggle} >  {darkMode ? ' Enable dark mode': 'Disable dark mode'  }
+        <MenuItem className='settings-btn' onClick={handleToggle} >  {darkMode ? 'Disable dark mode' : ' Enable dark mode'  }
         </MenuItem>
         <MenuItem className='settings-btn' onClick={handleClose}>Help</MenuItem>
         </div>
