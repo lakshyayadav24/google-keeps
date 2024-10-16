@@ -19,6 +19,8 @@ function App() {
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+  
+    
 
  
   const handleAddNote = (note) => {
@@ -59,8 +61,9 @@ function App() {
 
   return (
     <div className="app">
-      <Header toggleSidebar={toggleSidebar} isOpen={isOpen} search={search} setSearch={setSearch} />
-      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} toggleSidebar={toggleSidebar} activeComponent={activeComponent} setActiveComponent={setActiveComponent} />
+      <Header  toggleSidebar={toggleSidebar} isOpen={isOpen} search={search} setSearch={setSearch} />
+      <div className="app-content">
+      <Sidebar  isOpen={isOpen} setIsOpen={setIsOpen} toggleSidebar={toggleSidebar} activeComponent={activeComponent} setActiveComponent={setActiveComponent} />
       
      
       <div className="app-container">
@@ -72,6 +75,7 @@ function App() {
               onArchive={moveToArchive}
               onTrash={moveToTrash}
               search={search}
+              isOpen={isOpen}
             />
           )}
           {activeComponent === "archive" && (
@@ -80,6 +84,7 @@ function App() {
               onRestore={moveFromArchiveToNotes}
               onTrash={moveToTrash}
               search={search}
+              isOpen={isOpen}
             />
           )}
           {activeComponent === "trash" && (
@@ -88,12 +93,15 @@ function App() {
               onRestore={moveFromTrashToNotes}
               onDelete={deletePermanently}
               search={search}
+              isOpen={isOpen}
             />
           )}
         </main>
+      </div>
       </div>
     </div>
   );
 }
 
 export default App;
+
