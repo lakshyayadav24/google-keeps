@@ -3,18 +3,41 @@
     width: 40px;
     position: fixed;
     z-index: 1;
-    top: 90px;
+    top: 70px;
     left: 0;
     background-color: white;
     overflow-x: hidden;
     padding-top: 60px;
-    transition: 0.5s;
+    transition: width 0.5s;
   }
     
-  .sidebar:hover{
-    width: 250px;
-  }
+ 
+.sidebar:hover {
+  width: 230px;
+  box-shadow: 0px 0px 5px 2px #8681814a;
+
+}
   
+
+.sidebar .component {
+  padding: 10px;
+  margin-bottom: 0;
+  background-color: #ffffff;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  margin-top: 2px;
+  position: relative;
+  top: 5px;
+  left: 30px;
+  height:25px;
+  color: 73767B;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+    font-size: .875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+}
+
   .sidebar .component:hover{
     background-color:#FEEFC3 ;
   }
@@ -41,7 +64,9 @@
   }
   
   .sidebar.open {
-    width: 250px;
+    width: 230px;
+    box-shadow: 0px 0px 5px 2px #8681814a;
+
   }
   
   #main.open {
@@ -65,3 +90,26 @@ background-color: none;
     background-color: #FEEFC3;
 
   }
+
+  .sidebar {
+    height: 100%;
+    padding: 10px;
+  }
+  
+  .sidebar.dark {
+    background-color: #333;
+  }
+  
+  
+  .sidebar .component.dark {
+    background-color: #555;
+    color: #ffffff;
+  }
+  
+   .component:hover {
+    border-radius:40px  ;
+    background-color: #FEEFC3;
+   
+  
+  }
+  
