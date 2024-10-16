@@ -1,9 +1,17 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
 .app {
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100%;
 }
+
 
 .app-container {
   display: flex;
@@ -12,43 +20,17 @@
 }
 
 main.content{
-  width: 10000px;
+  width: 100px;
+  margin-left: 40px; /* Matches the initial width of the sidebar */
+  transition: margin-left 0.5s, width 0.5s;
+  width: calc(100% - 40px);
 }
 
-.sidebar {
-  height: 100%;
-  border: none;
-  padding: 10px;
+.app-content {
   display: flex;
-  flex-direction: column;
+  transition: margin-left 0.5s, width 0.5s;
 }
 
-
-.sidebar .component {
-  padding: 10px;
-  margin-bottom: 0;
-  background-color: #ffffff;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-  margin-top: 2px;
-  position: relative;
-  top: 5px;
-  left: 30px;
-  height:25px;
-  color: 73767B;
-  font-family: "Google Sans", Roboto, Arial, sans-serif;
-    font-size: .875rem;
-    font-weight: 500;
-    line-height: 1.25rem;
-}
-
- .component:hover {
-  border-radius:40px  ;
-  background-color: #FEEFC3;
- 
-
-}
 
 
 
@@ -61,7 +43,7 @@ main.content{
   height: 50px;
   position: fixed;
   top: 0;
-  min-width: 1660px;
+  width:98vw ;
   border-bottom: #9DBFAF;
   background-color: white ;
   z-index: 1000;
@@ -82,24 +64,27 @@ main.content{
   color: #5f6368;
   opacity: 1;
   display: inline-block;
-    font-family: "Product Sans", Arial, sans-serif;
-    font-size: 28px;
-    line-height: 24px;
-    font-weight: 1;
+  font-family: "Product Sans",Arial,sans-serif;
+  font-size: 22px;
+  line-height: 24px;
+  font-weight: 1;
+}
+
+.dark-mode .header h1{
+  color: white;
 }
 
 .search-bar{
-  width: 50rem ;
+  width: 50% ;
   display: flex;
   height: 3rem;
-  position: relative;
-  left: -160px;
+  position: absolute;
+  left: 260px;
   font-size: large;
   direction: ltr;
   font: 13px/27px Roboto,Arial,sans-serif;
   white-space: nowrap;
   max-width: 720px;
-  position: relative;
   border-radius: 8px;
   background: #fff;
   border: 1px solid transparent;
@@ -111,10 +96,12 @@ main.content{
 
 
 
+
 .search{
-  width: 42rem;
+  width: 82%;
   position: relative;
   left: 22px;
+  top: 5px;
   height: 2.5rem;
   border: none;
   box-shadow: none;
@@ -129,6 +116,83 @@ main.content{
   outline: none;
 }
 
+.toggle-btn {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  position: relative;
+  left: 508px;
+
+}
+
+.toggle-btn:hover {
+  background-color: #555;
+}
+
+/* Dark mode styles */
+.dark-mode {
+  background-color: #202124;
+  color: #ffffff;
+}
+
+.dark-mode .header {
+  background-color: #202124;
+  color: #ffffff;
+}
+
+.dark-mode .openbtn{
+  background-color: #202124;
+  color: #ffffff;
+}
+
+.dark-mode .search-bar{
+  background: #525355;
+  color: #ffffff;
+
+}
+
+ .dark-mode .search{
+    background: #525355;
+    color: #ffffff;
+    }
+
+  .dark-mode .search::placeholder{
+    color: white;
+  }  
+
+ .dark-mode .sidebar{
+  background-color: #202124;
+      color: #ffffff;
+      box-shadow: none;
+     }
+
+ .dark-mode .sidebar .component{
+  background-color: #202124;
+  color: #ffffff;
+}
+
+.dark-mode .sidebar .component:hover{
+  background-color: #41331C;
+}
+
+
+     
+.settings-btn-container{
+  height: 120px;
+  width: 160px;
+  position: relative;
+  top: -10px;
+  margin-bottom: -20px;
+}
+
+.dark-mode .settings-btn-container{
+  background-color: #525355 ;
+}
 
  .profile-container{
   display: fixed;
@@ -144,6 +208,128 @@ main.content{
   font-size: 40px;
 }
 
+.app-content{
+  display: flex;
+  transition: margin-left 0.5s, width 0.5s;
+}
+
+.account-profile{
+  background-color: #E9EEF6;
+  position: relative;
+  top: -10px;
+  height: 380px;
+  width: 460px;
+  margin-bottom: -16px;
+  border-radius: 40px;
+  margin: -22px;
+}
+
+.dark-mode .account-profile{
+  background: #2f2f30;
+}
+
+.dark-mode .account-ic{
+  color: white;
+}
+
+.dark-mode .account-options{
+  color: white;
+}
+.account-options{
+font-family:  Roboto, Arial, sans-serif;
+font-weight: 400;
+}
+
+.account-manage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  left: 100px ;
+  top: 5px ;
+  border: 2px solid grey ;
+  width: 250px ;
+  height: 40px;
+  border-radius: 50px ;
+  color: rgb(118, 118, 199) ;
+}
+
+.account-manage:hover{
+  cursor: pointer;
+  background-color: rgba(211, 211, 211, 0.063);
+}
+
+.account-container{
+  position: relative;
+  top: 0;
+  left: 20px;
+ height: 80px;
+ margin-bottom: -70px; 
+}
+
+.ic{
+  position: relative;
+  top: 10px;
+  left: 190px;
+  font-size: 60px;
+}
+
+.add-account{
+  width: 180px ;
+  height:60px ;
+  position: relative ;
+  left: 17px ;
+  top: 26px ;
+  background: white ;
+  border-radius: 30px 0 0 30px ;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.add-account:hover{
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+.dark-mode .add-account{
+  background-color: #202124;
+  color: white;
+}
+
+.dark-mode .add-account:hover{
+  cursor: pointer;
+  background-color: gray;
+}
+
+.add-accounts{
+  width: 180px;
+  height:60px ;
+  position: relative ;
+  left: 200px ;
+  top: -34px ;
+  background: white ;
+  border-radius: 0 30px 30px 0 ;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+}
+
+.add-accounts:hover{
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+.dark-mode .add-accounts{
+  background-color: #202124;
+  color: white;
+}
+
+.dark-mode .add-accounts:hover{
+  cursor: pointer;
+  background-color: gray;
+}
 
 .Add-button {
   font-family: "Google Sans", Roboto, Arial, sans-serif;
@@ -223,17 +409,17 @@ main.content{
 }
 
 .display-notes{
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); 
-  
+  display: grid;  
   gap: 2px;
   min-width: 1300px;
   min-height: 30px;
   overflow-wrap: break-word;
   padding: 10px;
-  position: relative;
-  left: 200px;
-  
+  transition: margin-left 0.5s;
+}
+
+.display-notes.move-left{
+  margin-left: 230px;
 }
 
 .note {
@@ -242,7 +428,8 @@ main.content{
   border: 1px solid #ddd; 
   border-radius: 10px; 
   box-sizing: border-box;
-  min-width:  100px;
+  min-width:  250px;
+  max-width: 300px;
   height: fit-content;
   margin-top: 0;
   overflow-wrap: break-word;
@@ -255,15 +442,37 @@ main.content{
   transition-duration: 0.3s;
 }
 
+.dark-mode .note-input{
+  background-color: #333;
+  color: #ffffff;
+}
+
+.dark-mode .note-title{
+  background-color: #333;
+  color: #ffffff;
+}
+
+.dark-mode .note-content{
+  background-color: #333;
+  color: #ffffff;
+}
+.dark-mode .Add-button{
+  background-color: #333;
+  color: #ffffff;
+}
+
 
 .archive-section{
   margin-top: 20px;
   display: inline-block;
   flex-direction: row;
   align-items: center;
-  position: relative;
-  left: 250px;
+  margin-left: 20px;
   overflow-wrap: break-word;
+}
+
+.archive-section.move-left{
+  margin-left: 230px;
 }
 
 .archive-head {
@@ -280,10 +489,13 @@ main.content{
   display: inline-block;
   flex-direction: row;
   align-items: center;
-  position: relative;
-  left: 200px;
+  margin-left: 20px;
   overflow-wrap: break-word;
 
+}
+
+.trash-section.move-left{
+  margin-left: 230px;
 }
 
 .trash-icon{
@@ -326,10 +538,23 @@ main.content{
   height: 32px;
   width: 32px;
   margin: 0 3px;
-  color: #202124;
   opacity: 0.71;
   user-select: none;
-  background-color: none;
+  background-color: white;
+}
+
+.note:hover .option-button:hover{
+  background-color: lightgray;
+}
+
+.dark-mode .note:hover .option-button{
+  background-color: #202124;
+  color: white;
+}
+
+.dark-mode .note:hover .option-button:hover{
+  background-color: gray;
+
 }
 
 .note:hover{
@@ -341,6 +566,9 @@ main.content{
   font-size: 25px;
   font-weight: 10px;
   color: #5e5e60;
+  position:relative ;
+  left:650px ; 
+  top:140px;
 }
 
 .empty-trash{
@@ -348,5 +576,196 @@ main.content{
   font-size: 25px;
   font-weight: 10px;
   color: #5e5e60;
+  position:relative ;
+  left:650px ;
+  top:140px ;
+}
+
+
+
+.display-notes .isOpen{
+  position: relative;
+  left: 300px ;
+}
+
+.archive-section .isOpen{
+  position: relative;
+  left: 300px ;
+}
+
+.trash-section .isOpen{
+  position: relative;
+  left: 300px ;
+}
+
+
+
+
+.dark-mode .settings-btn{
+  color: white;
+}
+
+.dark-mode .settings-btn:hover{
+  background-color: grey;
+}
+
+@media (max-width:1024px){
+  
+
+  .header{
+    width: 98%;
+    height: 70px;
+  }
+
+  .search-bar{
+    position: relative;
+    left: 20px;
+  }
+
+  .display-notes{
+    min-width: 600px;
+    max-width: 800px;
+  }
+
+  .note-input{
+    position: relative;
+    left: 200px;
+  }
+
+  .empty-trash{
+    position: relative;
+    left: 150px;
+    top: 20px;
+  }
+
+  .empty-archive{
+    position: relative;
+    left: 100px;
+    top: 20px;
+  }
   
 }
+@media (max-width:768px){
+  
+
+  .header{
+    width: 98%;
+    height: 70px;
+  }
+
+  .search-bar{
+    position: relative;
+    left: 20px;
+  }
+
+  .display-notes{
+    position: relative;
+    left: 90px;
+    max-width: 700px;
+  }
+
+  .note-input{
+    position: relative;
+    left: 100px;
+    width: 500px;
+  }
+
+  .empty-trash{
+    position: relative;
+    left: 100px;
+  }
+ 
+}
+@media (max-width:500px){
+ 
+  .body{
+    width: 500px;
+  }
+
+  .display-notes{
+    max-width: 500px;
+  }
+
+  .note{
+    width: 250px;
+  }
+  
+  .header{
+    width: 100%;
+    height: 70px;
+  }
+  .search-bar{
+    box-shadow: none;
+    width: 5%;
+    position: relative;
+    left: 180px;
+    top: 2px;
+  }
+  .search{
+    display: none;
+    
+  }
+
+  .note{
+    min-width: 550px;
+    min-height: 200px;
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .display-notes.move-left{
+    margin-left: 0px;
+  }
+}
+@media (max-width:375px){
+
+  .body{
+    width: 380px;
+  }
+
+  .display-notes{
+    max-width: 375px;
+  }
+  
+  .note{
+    width: 350px;
+    min-width: 450px;
+    min-height: 200px;
+  }
+
+  .header{
+    width: 100%;
+    height: 70px;
+  }
+
+  .display-notes.move-left{
+    margin-left: 0px;
+  }
+
+}
+@media (max-width:320px){
+
+  .body{
+    width: 320px;
+  }
+
+  .note{
+    width: 200px;
+  }
+
+  .header{
+    width: 100%;
+    height: 80px;
+  }
+  .note-input{
+    width: 500px;
+  }
+
+  .display-notes.move-left{
+    margin-left: 0px;
+  }
+
+ 
+}
+
+
