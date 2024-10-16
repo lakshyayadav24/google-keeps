@@ -3,9 +3,16 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { useState } from 'react';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [darkMode, setDarkMode] = React.useState(false);
+
+  const handleToggle = () => {
+    setDarkMode(!darkMode);
+    document.body.classList.toggle('dark-mode');
+  };
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -15,7 +22,7 @@ export default function BasicMenu() {
   };
 
   return (
-    <div>
+    <div className=''>
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
@@ -26,7 +33,8 @@ export default function BasicMenu() {
       >
         <SettingsIcon style={{color:'grey' , fontSize:'30px'}}/>
       </Button>
-      <Menu
+      <div className='settings-container' >
+      <Menu className='setting'
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
@@ -35,10 +43,15 @@ export default function BasicMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Settings</MenuItem>
-        <MenuItem onClick={handleClose}>Enable dark mode</MenuItem>
-        <MenuItem onClick={handleClose}>Help</MenuItem>
+        <div className='settings-btn-container'>
+        <MenuItem className='settings-btn' onClick={handleClose}>Settings</MenuItem>
+        <MenuItem className='settings-btn' onClick={handleToggle} >  {darkMode ? ' Enable dark mode': 'Disable dark mode'  }
+        </MenuItem>
+        <MenuItem className='settings-btn' onClick={handleClose}>Help</MenuItem>
+        </div>
       </Menu>
+      </div>
     </div>
   );
 }
+
