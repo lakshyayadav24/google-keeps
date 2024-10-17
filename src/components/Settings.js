@@ -3,7 +3,6 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { useState } from 'react';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -29,12 +28,13 @@ export default function BasicMenu() {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        style={{ position:'relative' , left:'-55px' , top:'-110px'}}
+        style={{ position:'relative' , left:'85px' , top:'-82px'}}
       >
         <SettingsIcon style={{color:'grey' , fontSize:'30px'}}/>
       </Button>
       <div className='settings-container' >
       <Menu className='setting'
+      sx={{position:'absolute' , left:'-50px' , top:'30px'}}
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
@@ -45,7 +45,7 @@ export default function BasicMenu() {
       >
         <div className='settings-btn-container'>
         <MenuItem className='settings-btn' onClick={handleClose}>Settings</MenuItem>
-        <MenuItem className='settings-btn' onClick={handleToggle} >  {darkMode ? 'Disable dark mode' : ' Enable dark mode'  }
+        <MenuItem className='settings-btn' onClick={handleToggle} >  {darkMode ? ' Disable dark mode': 'Enable dark mode'  }
         </MenuItem>
         <MenuItem className='settings-btn' onClick={handleClose}>Help</MenuItem>
         </div>
