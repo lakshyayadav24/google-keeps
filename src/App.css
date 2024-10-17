@@ -116,6 +116,11 @@ main.content{
   outline: none;
 }
 
+.profile-container{
+  width: 220px;
+  min-height: 60px;
+}
+
 .toggle-btn {
   font-family: Arial, sans-serif;
   font-size: 16px;
@@ -412,6 +417,7 @@ font-weight: 400;
   display: grid;  
   gap: 2px;
   min-width: 1300px;
+  max-width: 1300px;
   min-height: 30px;
   overflow-wrap: break-word;
   padding: 10px;
@@ -421,6 +427,32 @@ font-weight: 400;
 .display-notes.move-left{
   margin-left: 230px;
 }
+
+.list-view{
+  position: relative;
+  left: 450px;
+}
+
+.note-list-item{
+  padding: 10px;
+  border: 1px solid #ddd; 
+  border-radius: 10px; 
+  box-sizing: border-box;
+  width: 600px;
+  height: fit-content;
+  margin: 20px;
+  overflow-wrap: break-word;
+  letter-spacing:  .0142857143em;
+  font-family:  Roboto, Arial, sans-serif;
+  font-size: 0.975rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  transition: box-shadow;
+  transition-duration: 0.3s;
+
+}
+
+
 
 .note {
   
@@ -511,6 +543,58 @@ font-weight: 400;
   margin-top: 100px;
 }
 
+.note-list-item .options {
+  height: 30px;
+  width: 100%;
+}
+
+.note-list-item .option-button{
+  display: none;
+}
+
+
+
+.note-list-item:hover .option-button{
+  direction: ltr;
+  font-family: "Roboto",arial,sans-serif;
+  pointer-events: auto;
+  font-size: 12px;
+  line-height: 26px;
+  cursor: pointer;
+  display: inline-flex;
+  outline: none!important;
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  height: 32px;
+  width: 32px;
+  margin: 0 3px;
+  opacity: 0.71;
+  user-select: none;
+  background-color: white;
+
+}
+
+.note-list-item:hover .option-button:hover{
+  background-color: lightgray;
+}
+
+.note-list-item:hover{
+box-shadow: 0px 0px 5px 2px #8681814a;
+}
+
+.dark-mode .note-list-item:hover .option-button{
+  background-color: #202124;
+  color: white;
+}
+
+.dark-mode .note-list-item:hover .option-button:hover{
+  background-color: gray ;
+}
+
 .note .options {
   height: 30px;
   width: 100%;
@@ -519,6 +603,7 @@ font-weight: 400;
 .note .options .option-button {
   display: none;
 }
+
 
 .note:hover .option-button {
   direction: ltr;
@@ -611,6 +696,10 @@ font-weight: 400;
 
 @media (max-width:1024px){
   
+  .body{
+    width: 1000;
+    overflow-wrap:break-word ;
+  }
 
   .header{
     width: 98%;
@@ -627,9 +716,24 @@ font-weight: 400;
     max-width: 800px;
   }
 
+  .display-notes .isOpen{
+    max-width: 100px;
+    overflow-wrap: break-word;
+  }
+
   .note-input{
     position: relative;
     left: 200px;
+  }
+
+  .list-view{
+    position: relative;
+    left: 200px;
+  }
+
+  .note{
+    min-width: 300px;
+    max-width: 300px;
   }
 
   .empty-trash{
@@ -655,7 +759,7 @@ font-weight: 400;
 
   .search-bar{
     position: relative;
-    left: 20px;
+    left: 75px;
   }
 
   .display-notes{
@@ -668,6 +772,13 @@ font-weight: 400;
     position: relative;
     left: 100px;
     width: 500px;
+  }
+
+  .list-view{
+    position: relative;
+    left: 100px;
+    width: 500px;
+
   }
 
   .empty-trash{
@@ -701,6 +812,9 @@ font-weight: 400;
     left: 180px;
     top: 2px;
   }
+  
+  
+
   .search{
     display: none;
     
@@ -761,11 +875,17 @@ font-weight: 400;
     width: 500px;
   }
 
+  .list-view{
+    width: 500px;
+  }
+
   .display-notes.move-left{
     margin-left: 0px;
   }
 
  
 }
+
+
 
 
