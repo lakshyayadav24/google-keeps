@@ -5,11 +5,17 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 
-function Notes({ notes, onAddNote, onArchive, onTrash, search, isOpen, darkMode, hoveringSidebar }) {
+function Notes({ notes, onAddNote, onArchive, onTrash, search, isOpen, darkMode, hoveringSidebar , isListView }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [noteTitle, setNoteTitle] = useState('');
   const [noteContent, setNoteContent] = useState('');
+  const [key, setKey] = useState(0);
   let menuRef = useRef();
+  const masonaryRef = useRef(null);
+
+  useEffect(() => {
+    setKey((prevKey) => prevKey + 1);
+  }, [isOpen]);
 
   useEffect(() => {
     let handler = (e) => {
@@ -81,7 +87,26 @@ function Notes({ notes, onAddNote, onArchive, onTrash, search, isOpen, darkMode,
             <br />Notes you add appear here
           </p>
         ) : (
-          <Box className="note-box" sx={{ padding: '20px', width: { xs: '400px', sm: '580px', md: '800px', lg: '1000px', xl: '1200px' } }}>
+          isListView ? ( // Check if list view is enabled
+            <div className="list-view">
+              {notes.filter((note) => {
+                return search.toLowerCase() === ''
+                  ? note
+                  : (note.title && note.title.toLowerCase().includes(search)) ||
+                    (note.content && note.content.toLowerCase().includes(search));
+              }).map((note) => (
+                <div key={note.id} className="note-list-item">
+                  <h4 className="display-notes-content">  {note.title}</h4>
+                  <p className="display-notes-content">  {note.content}</p>
+                  <div className="options">
+                    <button onClick={() => onArchive(note.id)} title='Archive' className='option-button'><ArchiveIcon sx={{ position: 'relative', left: '-3px', top: '2px' }} /></button>
+                    <button onClick={() => onTrash(note.id)} title='Trash' className='option-button'><DeleteOutlineIcon sx={{ position: 'relative', left: '-3px', top: '2px' }} /></button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ):(
+          <Box className="note-box" ref={masonaryRef} sx={{ padding: '20px' , width: { xs: '400px', sm: '580px', md: '800px', lg: '1000px', xl: '1200px' } }}>
             <Masonry className='note-masonary' columns={columns} spacing={2}>
               {notes.filter((note) => {
                 return search.toLowerCase() === ''
@@ -100,6 +125,7 @@ function Notes({ notes, onAddNote, onArchive, onTrash, search, isOpen, darkMode,
               ))}
             </Masonry>
           </Box>
+          )
         )}
       </div>
     </div>
