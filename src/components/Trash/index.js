@@ -5,7 +5,7 @@ import RestoreFromTrashIcon from '@mui/icons-material/RestoreFromTrash';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-function Trash({ trashedNotes, onRestore, onDelete ,search , isOpen}) {
+function Trash({ trashedNotes, onRestore, onDelete ,search , isOpen , isListView }) {
 
   const columns = {
     xs: isOpen ? 1 : 1,
@@ -20,6 +20,25 @@ function Trash({ trashedNotes, onRestore, onDelete ,search , isOpen}) {
       {trashedNotes.length === 0 ? (
         <p className="empty-trash" ><DeleteOutlinedIcon style={{ fontSize: '400px' , height:"180px"  , color:'LightGrey' , position:"relative" , left:"-100px" }} className="trash-icon"/> <br/> No notes in trash</p>
       ) : (
+        isListView ? ( // Check if list view is enabled
+          <div className="list-view">
+            {trashedNotes.filter((note) => {
+              return search.toLowerCase() === ''
+                ? note
+                : (note.title && note.title.toLowerCase().includes(search)) ||
+                  (note.content && note.content.toLowerCase().includes(search));
+            }).map((note) => (
+              <div key={note.id} className="note-list-item">
+                <h4 className="display-notes-content">  {note.title}</h4>
+                <p className="display-notes-content">  {note.content}</p>
+                <div className="options">
+                  <button onClick={() => onRestore(note.id)} title='Archive' className='option-button'><RestoreFromTrashIcon sx={{ position: 'relative', left: '-3px', top: '2px' }} /></button>
+                  <button onClick={() => onDelete(note.id)} title='Trash' className='option-button'><DeleteForeverIcon sx={{ position: 'relative', left: '-3px', top: '2px' }} /></button>
+                </div>
+              </div>
+            ))}
+          </div>
+        ): (
         <Box sx={{width:{xs:'400px' , sm:'580px' , md:'800px' , lg:'1000px' , xl:'1200px'}}}>
       <Masonry columns={columns} spacing={2}>
         {trashedNotes.filter((note) =>{
@@ -39,6 +58,7 @@ function Trash({ trashedNotes, onRestore, onDelete ,search , isOpen}) {
         ))}
         </Masonry>
         </Box>
+        )
       )}
     </div>
   );
