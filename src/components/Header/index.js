@@ -4,16 +4,13 @@ import { IconButton } from '@mui/material';
 import AccountMenu from '../Account';
 import BasicMenu from '../Settings';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import ListIcon from '@mui/icons-material/List';
+import GridViewIcon from '@mui/icons-material/GridView';
 
 
+function Header({ search, setSearch ,toggleSidebar , isOpen , darkMode , toggleView , isListView }) {
 
-function Header({ search, setSearch ,toggleSidebar , isOpen   }) {
-  const [darkMode, setDarkMode] = useState(false);
-
-  const handleToggle = () => {
-    setDarkMode(!darkMode);
-    document.body.classList.toggle('dark-mode');
-  };
+ 
 
   return (
     <header className="header">
@@ -39,10 +36,13 @@ function Header({ search, setSearch ,toggleSidebar , isOpen   }) {
           </div>
       
       <div className='profile-container'  >
-        <IconButton className='prfile-icon' style={{ position:'relative' , left:'-103px' , top:'-35px'}}>
-        <RefreshIcon className='prfile-icon' style={{fontSize:'30px' , color:'grey'}}/>
+      <IconButton className='prfile-icon' sx={{position:'relative' , top:'-8px' , left:'-10px'}} >
+        <RefreshIcon className='prfile-icon' style={{fontSize:'30px'}} />
         </IconButton>
-        <BasicMenu className='prfile-icon'/>
+      <IconButton className='profile-icon' onClick={toggleView} sx={{position:'relative' , top:'-8px' , left:'-10px' }}> 
+          {isListView ? <GridViewIcon style={{ fontSize: '35px', color: 'grey' }}/> : <ListIcon style={{ fontSize: '40px', color: 'grey' }} />}
+        </IconButton>
+        <BasicMenu className='prfile-icon' />
         <AccountMenu className='prfile-icon'/>
         </div>
     </header>
