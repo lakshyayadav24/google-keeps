@@ -6,7 +6,7 @@ import UnarchiveIcon from '@mui/icons-material/Unarchive';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 
 
-function Archive({ archivedNotes, onRestore, onTrash , search , isOpen}) {
+function Archive({ archivedNotes, onRestore, onTrash , search , isOpen , isListView }) {
 
   const columns = {
     xs: isOpen ? 1 : 1,
@@ -21,6 +21,25 @@ function Archive({ archivedNotes, onRestore, onTrash , search , isOpen}) {
       {archivedNotes.length === 0 ? (
         <p className="empty-archive" ><ArchiveOutlinedIcon  style={{  fontSize: '400px' , height:"180px"  , color:'LightGrey' , position:"relative" , left:"-100px" }}/> <br/>No notes in archive</p>
       ) : (
+        isListView ? ( // Check if list view is enabled
+          <div className="list-view">
+            {archivedNotes.filter((note) => {
+              return search.toLowerCase() === ''
+                ? note
+                : (note.title && note.title.toLowerCase().includes(search)) ||
+                  (note.content && note.content.toLowerCase().includes(search));
+            }).map((note) => (
+              <div key={note.id} className="note-list-item">
+                <h4 className="display-notes-content">  {note.title}</h4>
+                <p className="display-notes-content">  {note.content}</p>
+                <div className="options">
+                  <button onClick={() => onRestore(note.id)} title='Archive' className='option-button'><UnarchiveIcon sx={{ position: 'relative', left: '-3px', top: '2px' }} /></button>
+                  <button onClick={() => onTrash(note.id)} title='Trash' className='option-button'><DeleteOutlineIcon sx={{ position: 'relative', left: '-3px', top: '2px' }} /></button>
+                </div>
+              </div>
+            ))}
+          </div>
+        ): (
         <Box sx={{width:{xs:'400px' , sm:'580px' , md:'800px' , lg:'1000px' , xl:'1200px'}}}>
         <Masonry columns={columns} spacing={2}>
   
@@ -41,6 +60,7 @@ function Archive({ archivedNotes, onRestore, onTrash , search , isOpen}) {
         ))}
         </Masonry>
         </Box>
+        )
       )}
     </div>
   );
