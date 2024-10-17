@@ -13,14 +13,16 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [trashedNotes, setTrashedNotes] = useState([]);
   const [search , setSearch] =useState('');
-
+  const [isListView, setIsListView] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
   
-    
+    const toggleView = () =>{
+      setIsListView(!isListView);
+    }
 
  
   const handleAddNote = (note) => {
@@ -61,7 +63,7 @@ function App() {
 
   return (
     <div className="app">
-      <Header  toggleSidebar={toggleSidebar} isOpen={isOpen} search={search} setSearch={setSearch} />
+      <Header  toggleSidebar={toggleSidebar} isOpen={isOpen} search={search} setSearch={setSearch}  toggleView={toggleView} isListView={isListView}/>
       <div className="app-content">
       <Sidebar  isOpen={isOpen} setIsOpen={setIsOpen} toggleSidebar={toggleSidebar} activeComponent={activeComponent} setActiveComponent={setActiveComponent} />
       
@@ -76,6 +78,7 @@ function App() {
               onTrash={moveToTrash}
               search={search}
               isOpen={isOpen}
+              isListView={isListView}
             />
           )}
           {activeComponent === "archive" && (
@@ -85,6 +88,8 @@ function App() {
               onTrash={moveToTrash}
               search={search}
               isOpen={isOpen}
+              isListView={isListView}
+
             />
           )}
           {activeComponent === "trash" && (
@@ -94,6 +99,8 @@ function App() {
               onDelete={deletePermanently}
               search={search}
               isOpen={isOpen}
+              isListView={isListView}
+
             />
           )}
         </main>
